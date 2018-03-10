@@ -1,9 +1,12 @@
 package com.example.soa.Model;
 
+import javax.persistence.*;
 import java.util.Date;
 
-public class User {
-    public int id;
+@Entity
+@Table(name = "users")
+public class User extends BaseEntity {
+
     public String FirstName;
     public String LastName;
     public String EMBG;
@@ -12,13 +15,14 @@ public class User {
     public String Email;
     public Date Birthday;
     public Date EmplDate;
+
+    @ManyToOne
     public Role role;
 
     public User() {
-
     }
 
-    public User(int id, String firstName, String lastName, String EMBG, String username, String password, String email, Date birthday, Date emplDate, Role role) {
+    public User(Long id, String firstName, String lastName, String EMBG, String username, String password, String email, Date birthday, Date emplDate, Role role) {
         this.id = id;
         FirstName = firstName;
         LastName = lastName;
