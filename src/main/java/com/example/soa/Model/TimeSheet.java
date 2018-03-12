@@ -5,9 +5,14 @@ import java.util.Date;
 @Entity
 @Table(name = "timesheet")
 public class TimeSheet extends BaseEntity{
+    @Id
+    @Column(name = "id")
     public long id;
+    @Column(name = "user_id",nullable = false,unique = true)
     public User user;
+    @Column(name="date")
     public Date date;
+    @Column(name = "hours",nullable = false)
     public float hours;
     public TimeSheet() {
     }
@@ -19,8 +24,7 @@ public class TimeSheet extends BaseEntity{
         this.hours = hours;
     }
 
-    @Id
-    @Column(name = "id")
+
     public long getId() {
         return id;
     }
@@ -28,7 +32,7 @@ public class TimeSheet extends BaseEntity{
     public void setId(long id) {
         this.id = id;
     }
-    @Column(name = "user_id",nullable = false,unique = true)
+
     public User getUsername() {
         return user;
     }
@@ -36,7 +40,7 @@ public class TimeSheet extends BaseEntity{
     public void setUsername(User username) {
         this.user = username;
     }
-    @Column(name="date")
+
     public Date getDate() {
         return date;
     }
@@ -44,7 +48,7 @@ public class TimeSheet extends BaseEntity{
     public void setDate(Date date) {
         this.date = date;
     }
-    @Column(name = "hours",nullable = false)
+
     public float getHours() {
         return hours;
     }
