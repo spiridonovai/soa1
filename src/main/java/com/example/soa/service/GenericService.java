@@ -10,4 +10,15 @@ public interface GenericService {
 
     List<User> findAllUsers();
 
+    User findById(long id);
+
+    boolean isUserExist(User user);
+
+    void saveUser(User user);
+
+    void updateUser(User user);
+
+    void deleteUserById(long id);
+
+    void deleteAllUsers();
 }

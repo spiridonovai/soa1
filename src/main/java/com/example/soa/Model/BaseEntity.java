@@ -20,6 +20,14 @@ public class BaseEntity {
         return id.equals(that.id);
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
     @Override
     public int hashCode() {
         return id.hashCode();
