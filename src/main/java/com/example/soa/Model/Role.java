@@ -1,13 +1,18 @@
 package com.example.soa.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "roles")
 public class Role extends BaseEntity {
-    public int id;
+
     public String role_name;
+
+    @OneToMany
+    public List<User> users;
 
     public Role() {
 

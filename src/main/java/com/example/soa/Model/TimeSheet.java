@@ -2,18 +2,19 @@ package com.example.soa.Model;
 
 import javax.persistence.*;
 import java.util.Date;
+
 @Entity
 @Table(name = "timesheet")
-public class TimeSheet extends BaseEntity{
-    @Id
-    @Column(name = "id")
-    public long id;
-    @Column(name = "user_id",nullable = false,unique = true)
+public class TimeSheet extends BaseEntity {
+
+    @ManyToOne
     public User user;
-    @Column(name="date")
+
+    @Column(name = "date")
     public Date date;
-    @Column(name = "hours",nullable = false)
+    @Column(name = "hours", nullable = false)
     public float hours;
+
     public TimeSheet() {
     }
 
@@ -25,7 +26,7 @@ public class TimeSheet extends BaseEntity{
     }
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
