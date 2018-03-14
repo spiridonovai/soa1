@@ -26,3 +26,4 @@ nbdist/
 data/
 
 src/main/resources/application.properties
+/bin/
