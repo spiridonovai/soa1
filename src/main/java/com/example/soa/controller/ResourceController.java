@@ -11,7 +11,7 @@ import java.util.Collections;
  * Created by nydiarra on 06/05/17.
  */
 @RestController
-@RequestMapping("/")
+@RequestMapping("/resources")
 public class ResourceController {
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
     public String index() {
