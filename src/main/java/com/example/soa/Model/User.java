@@ -7,14 +7,14 @@ import java.util.Date;
 @Table(name = "users")
 public class User extends BaseEntity {
 
-    public String FirstName;
-    public String LastName;
-    public String EMBG;
-    public String Username;
-    public String Password;
-    public String Email;
-    public Date Birthday;
-    public Date EmplDate;
+    public String firstName;
+    public String lastName;
+    public String embg;
+    public String username;
+    public String password;
+    public String email;
+    public Date birthday;
+    public Date emplDate;
 
     @ManyToOne
     public Role role;
@@ -22,49 +22,49 @@ public class User extends BaseEntity {
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, String EMBG, String username, String password, String email, Date birthday, Date emplDate, Role role) {
+    public User(Long id, String firstName, String lastName, String embg, String username, String password, String email, Date birthday, Date emplDate, Role role) {
         this.id = id;
-        FirstName = firstName;
-        LastName = lastName;
-        this.EMBG = EMBG;
-        Username = username;
-        Password = password;
-        Email = email;
-        Birthday = birthday;
-        EmplDate = emplDate;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.embg = embg;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.birthday = birthday;
+        this.emplDate = emplDate;
         this.role = role;
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
-    public String getEMBG() {
-        return EMBG;
+    public String getEmbg() {
+        return embg;
     }
 
     public String getUsername() {
-        return Username;
+        return username;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public Date getBirthday() {
-        return Birthday;
+        return birthday;
     }
 
     public Date getEmplDate() {
-        return EmplDate;
+        return emplDate;
     }
 
     public Role getRole() {
@@ -72,35 +72,35 @@ public class User extends BaseEntity {
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
-    public void setEMBG(String EMBG) {
-        this.EMBG = EMBG;
+    public void setEmbg(String embg) {
+        this.embg = embg;
     }
 
     public void setUsername(String username) {
-        Username = username;
+        this.username = username;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public void setBirthday(Date birthday) {
-        Birthday = birthday;
+        this.birthday = birthday;
     }
 
     public void setEmplDate(Date emplDate) {
-        EmplDate = emplDate;
+        this.emplDate = emplDate;
     }
 
     public void setRole(Role role) {

@@ -4,14 +4,12 @@ import com.example.soa.Model.User;
 import com.example.soa.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by nydiarra on 06/05/17.
@@ -30,7 +28,7 @@ public class AppUserDetailsService implements UserDetailsService {
         }
 
         UserDetails userDetails = new org.springframework.security.core.userdetails.
-                User(user.Username, user.Password, new ArrayList<GrantedAuthority>());
+                User(user.username, user.password, new ArrayList<GrantedAuthority>());
 
         return userDetails;
     }
