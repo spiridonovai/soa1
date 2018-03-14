@@ -27,13 +27,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 /**
  * Created by nydiarra on 06/05/17.
  */
 @RestController
-@RequestMapping("/springjwt")
+@RequestMapping("/")
 public class ResourceController {
     @Autowired
     private GenericService userService;
@@ -42,9 +43,9 @@ public class ResourceController {
     // -------------------Retrieve All Users---------------------------------------------
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('ADMIN_USER')")
-    public ResponseEntity<List<User>>listAllUsers() {
+    public ResponseEntity<List<User>> listAllUsers() {
         List<User> users = userService.findAllUsers();
-        if(users.isEmpty()) {
+        if (users.isEmpty()) {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<List<User>>(users, HttpStatus.OK);
