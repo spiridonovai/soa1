@@ -17,4 +17,7 @@ public class ResourceController {
     public String index() {
         return "{\" proba \":\" asdsad \"}";
     }
+
+
 }
+

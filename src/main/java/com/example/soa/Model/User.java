@@ -1,5 +1,8 @@
 package com.example.soa.Model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.DateSerializer;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -59,10 +62,12 @@ public class User extends BaseEntity {
         return email;
     }
 
+    @JsonSerialize(using=DateSerializer.class)
     public Date getBirthday() {
         return birthday;
     }
 
+    @JsonSerialize(using=DateSerializer.class)
     public Date getEmplDate() {
         return emplDate;
     }
