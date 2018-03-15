@@ -1,4 +1,4 @@
-package com.example.soa.Model;
+package com.example.soa.model;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;

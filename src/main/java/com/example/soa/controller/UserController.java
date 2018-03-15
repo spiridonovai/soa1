@@ -1,6 +1,6 @@
 package com.example.soa.controller;
 
-import com.example.soa.Model.User;
+import com.example.soa.model.User;
 import com.example.soa.service.GenericService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

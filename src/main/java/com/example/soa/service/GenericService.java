@@ -1,8 +1,8 @@
 package com.example.soa.service;
 
-import com.example.soa.Model.User;
-
 import java.util.List;
+
+import com.example.soa.model.User;
 
 
 public interface GenericService {

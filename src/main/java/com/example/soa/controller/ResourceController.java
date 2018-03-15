@@ -1,9 +1,10 @@
 package com.example.soa.controller;
 
-import com.example.soa.Model.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.soa.model.User;
 
 import java.util.Collections;
 

@@ -1,6 +1,6 @@
 package com.example.soa.service.impl;
 
-import com.example.soa.Model.User;
+import com.example.soa.model.User;
 import com.example.soa.repository.UserRepository;
 import com.example.soa.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
