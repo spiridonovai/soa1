@@ -1,7 +1,8 @@
 package com.example.soa.controller;
 
 import com.example.soa.model.User;
-import com.example.soa.service.GenericService;
+import com.example.soa.repository.UserRepository;
+import com.example.soa.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,18 +13,27 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
 public class UserController {
-    @Autowired
-    private GenericService userService;
+
+    private UserService userService;
+    private UserRepository userRepository;
+
     public static final Logger logger = LoggerFactory.getLogger(ResourceController.class);
+
+    @Autowired
+    public UserController(UserService userService, UserRepository userRepository) {
+        this.userService = userService;
+        this.userRepository = userRepository;
+    }
 
     // -------------------Retrieve All Users---------------------------------------------
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ResponseEntity<List<User>> listAllUsers() {
-        List<User> users = userService.findAllUsers();
+        List<User> users = (List<User>) userRepository.findAll();
         if (users.isEmpty()) {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
@@ -33,7 +43,7 @@ public class UserController {
     // -------------------Retrieve Single User---------------------------------------------
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-   public ResponseEntity<?> getUser(@PathVariable("id") long id) {
+    public ResponseEntity<?> getUser(@PathVariable("id") long id) {
         logger.info("Fetching User with id {}", id);
         User user = userService.findById(id);
         if (user == null) {
@@ -48,7 +58,7 @@ public class UserController {
     public ResponseEntity<?> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
         logger.info("Creating User : {}", user);
 
-        if (userService.isUserExist(user)) {
+        if (userRepository.existsById(user.id)) {
             logger.error("Unable to create. A User with name {} already exist", user.getFirstName());
             return new ResponseEntity(HttpStatus.CONFLICT);
         }
@@ -65,25 +75,28 @@ public class UserController {
     public ResponseEntity<?> updateUser(@PathVariable("id") long id, @RequestBody User user) {
         logger.info("Updating User with id {}", id);
 
-        User currentUser = userService.findById(id);
 
-        if (currentUser == null) {
+        Optional<User> optionalCurrentUser = userRepository.findById(id);
+        if (optionalCurrentUser.isPresent()) {
+            User currentUser = optionalCurrentUser.get();
+
+            currentUser.setFirstName(user.getFirstName());
+            currentUser.setLastName(user.getLastName());
+            currentUser.setBirthday(user.getBirthday());
+            currentUser.setEmail(user.getEmail());
+            currentUser.setEmbg(user.getEmbg());
+            currentUser.setEmplDate(user.getEmplDate());
+            currentUser.setPassword(user.getPassword());
+            currentUser.setRole(user.getRole());
+            currentUser.setUsername(user.getUsername());
+
+            userService.updateUser(currentUser);
+            return new ResponseEntity<User>(currentUser, HttpStatus.OK);
+        } else {
             logger.error("Unable to update. User with id {} not found.", id);
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
 
-        currentUser.setFirstName(user.getFirstName());
-        currentUser.setLastName(user.getLastName());
-        currentUser.setBirthday(user.getBirthday());
-        currentUser.setEmail(user.getEmail());
-        currentUser.setEmbg(user.getEmbg());
-        currentUser.setEmplDate(user.getEmplDate());
-        currentUser.setPassword(user.getPassword());
-        currentUser.setRole(user.getRole());
-        currentUser.setUsername(user.getUsername());
-
-        userService.updateUser(currentUser);
-        return new ResponseEntity<User>(currentUser, HttpStatus.OK);
     }
 
     // ------------------- Delete a User-----------------------------------------
