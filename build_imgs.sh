@@ -20,4 +20,12 @@ cd eureka
 mvn package docker:build
 cd ..
 
+echo "building zuul docker image"
+cd zuul
+mvn package docker:build
+cd ..
+
+
+
 echo "You are ready to start docker-compose: docker-compose up"
+
