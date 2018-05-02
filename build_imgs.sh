@@ -20,6 +20,7 @@ cd eureka
 mvn package docker:build
 cd ..
 
+<<<<<<< HEAD
 echo "building zuul docker image"
 cd zuul
 mvn package docker:build
@@ -29,3 +30,6 @@ cd ..
 
 echo "You are ready to start docker-compose: docker-compose up"
 
+=======
+echo "You are ready to start docker-compose: docker-compose up"
+>>>>>>> 724284840acf49c022afc40adc90f77e633d5853
